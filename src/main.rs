@@ -12,7 +12,7 @@ extern crate serde_xml_rs;
 extern crate reqwest;
 extern crate dotenv;
 
-use std::fs;
+//use std::fs;
 use reqwest::header::AUTHORIZATION;
 use dotenv::dotenv;
 use std::env;
@@ -102,6 +102,7 @@ struct InformationStatus {
 struct SiteMeasurements {
     measurementSiteReference: MeasurementSiteReference,
     measurementTimeDefault: MeasurementTimeDefault,
+    #[serde(default)]
     measuredValue: Vec<MeasuredValue_>,
 }
 
@@ -611,7 +612,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     let jm = serde_json::to_string(&measurements)?;
-    println!("{:?}", &jm);
+//    println!("{:?}", &jm);
 
     let res = client
         .post("http://localhost:8080/weather_data")
