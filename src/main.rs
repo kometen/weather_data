@@ -16,6 +16,7 @@ extern crate dotenv;
 use reqwest::header::AUTHORIZATION;
 use dotenv::dotenv;
 use std::env;
+use std::process::exit;
 
 // XML-root
 #[derive(Deserialize, Debug)]
@@ -382,6 +383,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let BASIC_AUTH = env::var("VEGVESEN_BASIC_AUTH").expect("Please add basic authentication");
 
     let client = reqwest::blocking::Client::new();
+
+    // Check if URL is available.
+    let res = client
+        .get("http://localhost:8080")
+        .send()?;
+
+    if !res.status().is_success() {
+        exit(1);
+    }
+
     let res = client
         .get("https://www.vegvesen.no/ws/no/vegvesen/veg/trafikkpublikasjon/vaer/2/GetMeasuredWeatherData")
         .header(AUTHORIZATION, BASIC_AUTH)
