@@ -5,6 +5,7 @@
 #![allow(non_snake_case)]
 
 mod structs;
+mod test;
 
 #[macro_use]
 extern crate serde_derive;
@@ -19,7 +20,7 @@ use reqwest::header::AUTHORIZATION;
 use dotenv::dotenv;
 use std::env;
 use std::process::exit;
-use crate::structs::D2LogicalModel;
+//use crate::structs::D2LogicalModel;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
 /*    let filename = "../vejr.xml";
@@ -49,7 +50,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let mut measurements: Vec<structs::WeatherMeasurement> = Vec::new();
 
-    let d2LogicalModel: D2LogicalModel = serde_xml_rs::from_str(&body).unwrap();
+    let d2LogicalModel: structs::D2LogicalModel = serde_xml_rs::from_str(&body).unwrap();
     let publication_time = &d2LogicalModel.payloadPublication.publicationTime.publicationTime;
     for site in &d2LogicalModel.payloadPublication.siteMeasurements {
         let id = &site.measurementSiteReference.id;
