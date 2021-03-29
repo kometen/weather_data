@@ -9,7 +9,6 @@ mod test;
 
 #[macro_use]
 extern crate serde_derive;
-
 extern crate serde;
 extern crate serde_xml_rs;
 extern crate reqwest;
@@ -20,7 +19,6 @@ use reqwest::header::AUTHORIZATION;
 use dotenv::dotenv;
 use std::env;
 use std::process::exit;
-//use crate::structs::D2LogicalModel;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
 /*    let filename = "../vejr.xml";
@@ -51,9 +49,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut measurements: Vec<structs::WeatherMeasurement> = Vec::new();
 
     let d2LogicalModel: structs::D2LogicalModel = serde_xml_rs::from_str(&body).unwrap();
-    let publication_time = &d2LogicalModel.payloadPublication.publicationTime.publicationTime;
+//    let publication_time = &d2LogicalModel.payloadPublication.publicationTime.publicationTime;
     for site in &d2LogicalModel.payloadPublication.siteMeasurements {
         let id = &site.measurementSiteReference.id;
+        let measurement_time_default = &site.measurementTimeDefault.measurementTimeDefault;
         for measured_value in &site.measuredValue {
             let index = &measured_value.index;
 
@@ -71,15 +70,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .percentage
                     .percentage;
                 let wm = structs::WeatherMeasurement {
-                    publication_time: String::from(publication_time.clone()),
+                    measurement_time_default: String::from(measurement_time_default.clone()),
                     id: u16::from(id.clone()),
                     index: u16::from(index.clone()),
                     field_description: String::from(field_description.clone()),
                     measurement: f32::from(measurement.clone()),
                 };
                 measurements.push(wm);
-                /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                         publication_time, id, index, field_description, measurement);*/
+                /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
+                         measurement_time_default, id, index, field_description, measurement);*/
             }
 
             // precipitationIntensity
@@ -94,15 +93,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .millimetresPerHourIntensity
                     .millimetresPerHourIntensity;
                 let wm = structs::WeatherMeasurement {
-                    publication_time: String::from(publication_time.clone()),
+                    measurement_time_default: String::from(measurement_time_default.clone()),
                     id: u16::from(id.clone()),
                     index: u16::from(index.clone()),
                     field_description: String::from(field_description.clone()),
                     measurement: f32::from(measurement.clone()),
                 };
                 measurements.push(wm);
-                /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                         publication_time, id, index, field_description, measurement);*/
+                /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
+                         measurement_time_default, id, index, field_description, measurement);*/
             };
 
             // roadSurfaceTemperature
@@ -117,15 +116,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .temperature
                     .temperature;
                 let wm = structs::WeatherMeasurement {
-                    publication_time: String::from(publication_time.clone()),
+                    measurement_time_default: String::from(measurement_time_default.clone()),
                     id: u16::from(id.clone()),
                     index: u16::from(index.clone()),
                     field_description: String::from(field_description.clone()),
                     measurement: f32::from(measurement.clone()),
                 };
                 measurements.push(wm);
-                /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                         publication_time, id, index, field_description, measurement);*/
+                /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
+                         measurement_time_default, id, index, field_description, measurement);*/
             };
 
             // windSpeed
@@ -140,15 +139,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .speed
                     .speed;
                 let wm = structs::WeatherMeasurement {
-                    publication_time: String::from(publication_time.clone()),
+                    measurement_time_default: String::from(measurement_time_default.clone()),
                     id: u16::from(id.clone()),
                     index: u16::from(index.clone()),
                     field_description: String::from(field_description.clone()),
                     measurement: f32::from(measurement.clone()),
                 };
                 measurements.push(wm);
-                /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                         publication_time, id, index, field_description, measurement);*/
+                /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
+                         measurement_time_default, id, index, field_description, measurement);*/
             };
 
             // directionBearing
@@ -163,15 +162,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .directionBearing
                     .directionBearing;
                 let wm = structs::WeatherMeasurement {
-                    publication_time: String::from(publication_time.clone()),
+                    measurement_time_default: String::from(measurement_time_default.clone()),
                     id: u16::from(id.clone()),
                     index: u16::from(index.clone()),
                     field_description: String::from(field_description.clone()),
                     measurement: f32::from(measurement.clone()),
                 };
                 measurements.push(wm);
-                /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                         publication_time, id, index, field_description, measurement);*/
+                /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
+                         measurement_time_default, id, index, field_description, measurement);*/
             };
 
             // airTemperature
@@ -186,15 +185,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .temperature
                     .temperature;
                 let wm = structs::WeatherMeasurement {
-                    publication_time: String::from(publication_time.clone()),
+                    measurement_time_default: String::from(measurement_time_default.clone()),
                     id: u16::from(id.clone()),
                     index: u16::from(index.clone()),
                     field_description: String::from(field_description.clone()),
                     measurement: f32::from(measurement.clone()),
                 };
                 measurements.push(wm);
-                /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                         publication_time, id, index, field_description, measurement);*/
+                /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
+                         measurement_time_default, id, index, field_description, measurement);*/
             };
 
             // dewPointTemperature
@@ -209,15 +208,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .temperature
                     .temperature;
                 let wm = structs::WeatherMeasurement {
-                    publication_time: String::from(publication_time.clone()),
+                    measurement_time_default: String::from(measurement_time_default.clone()),
                     id: u16::from(id.clone()),
                     index: u16::from(index.clone()),
                     field_description: String::from(field_description.clone()),
                     measurement: f32::from(measurement.clone()),
                 };
                 measurements.push(wm);
-                /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                         publication_time, id, index, field_description, measurement);*/
+                /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
+                         measurement_time_default, id, index, field_description, measurement);*/
             };
 
             // visibility
@@ -232,15 +231,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .integerMetreDistance
                     .integerMetreDistance;
                 let wm = structs::WeatherMeasurement {
-                    publication_time: String::from(publication_time.clone()),
+                    measurement_time_default: String::from(measurement_time_default.clone()),
                     id: u16::from(id.clone()),
                     index: u16::from(index.clone()),
                     field_description: String::from(field_description.clone()),
                     measurement: f32::from(measurement.clone()),
                 };
                 measurements.push(wm);
-                /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                         publication_time, id, index, field_description, measurement);*/
+                /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
+                         measurement_time_default, id, index, field_description, measurement);*/
             };
 
             // roadSurfaceConditionMeasurements
@@ -257,15 +256,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .coefficientOfFriction
                     .coefficientOfFriction;
                 let wm = structs::WeatherMeasurement {
-                    publication_time: String::from(publication_time.clone()),
+                    measurement_time_default: String::from(measurement_time_default.clone()),
                     id: u16::from(id.clone()),
                     index: u16::from(index.clone()),
                     field_description: String::from(field_description.clone()),
                     measurement: f32::from(measurement.clone()),
                 };
                 measurements.push(wm);
-                /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                         publication_time, id, index, field_description, measurement);*/
+                /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
+                         measurement_time_default, id, index, field_description, measurement);*/
             };
         }
     }

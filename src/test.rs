@@ -147,6 +147,7 @@ mod tests {
         let publication_time = &d2LogicalModel.payloadPublication.publicationTime.publicationTime;
         for site in &d2LogicalModel.payloadPublication.siteMeasurements {
             let id = &site.measurementSiteReference.id;
+            let measurement_time_default = &site.measurementTimeDefault.measurementTimeDefault;
             for measured_value in &site.measuredValue {
                 let index = &measured_value.index;
 
@@ -164,7 +165,7 @@ mod tests {
                         .percentage
                         .percentage;
                     let wm = structs::WeatherMeasurement {
-                        publication_time: String::from(publication_time.clone()),
+                        measurement_time_default: String::from(measurement_time_default.clone()),
                         id: u16::from(id.clone()),
                         index: u16::from(index.clone()),
                         field_description: String::from(field_description.clone()),
@@ -192,7 +193,7 @@ mod tests {
                         .millimetresPerHourIntensity
                         .millimetresPerHourIntensity;
                     let wm = structs::WeatherMeasurement {
-                        publication_time: String::from(publication_time.clone()),
+                        measurement_time_default: String::from(measurement_time_default.clone()),
                         id: u16::from(id.clone()),
                         index: u16::from(index.clone()),
                         field_description: String::from(field_description.clone()),
@@ -220,7 +221,7 @@ mod tests {
                         .temperature
                         .temperature;
                     let wm = structs::WeatherMeasurement {
-                        publication_time: String::from(publication_time.clone()),
+                        measurement_time_default: String::from(measurement_time_default.clone()),
                         id: u16::from(id.clone()),
                         index: u16::from(index.clone()),
                         field_description: String::from(field_description.clone()),
@@ -248,7 +249,7 @@ mod tests {
                         .speed
                         .speed;
                     let wm = structs::WeatherMeasurement {
-                        publication_time: String::from(publication_time.clone()),
+                        measurement_time_default: String::from(measurement_time_default.clone()),
                         id: u16::from(id.clone()),
                         index: u16::from(index.clone()),
                         field_description: String::from(field_description.clone()),
@@ -276,7 +277,7 @@ mod tests {
                         .directionBearing
                         .directionBearing;
                     let wm = structs::WeatherMeasurement {
-                        publication_time: String::from(publication_time.clone()),
+                        measurement_time_default: String::from(measurement_time_default.clone()),
                         id: u16::from(id.clone()),
                         index: u16::from(index.clone()),
                         field_description: String::from(field_description.clone()),
@@ -304,7 +305,7 @@ mod tests {
                         .temperature
                         .temperature;
                     let wm = structs::WeatherMeasurement {
-                        publication_time: String::from(publication_time.clone()),
+                        measurement_time_default: String::from(measurement_time_default.clone()),
                         id: u16::from(id.clone()),
                         index: u16::from(index.clone()),
                         field_description: String::from(field_description.clone()),
@@ -332,7 +333,7 @@ mod tests {
                         .temperature
                         .temperature;
                     let wm = structs::WeatherMeasurement {
-                        publication_time: String::from(publication_time.clone()),
+                        measurement_time_default: String::from(measurement_time_default.clone()),
                         id: u16::from(id.clone()),
                         index: u16::from(index.clone()),
                         field_description: String::from(field_description.clone()),
@@ -360,7 +361,7 @@ mod tests {
                         .integerMetreDistance
                         .integerMetreDistance;
                     let wm = structs::WeatherMeasurement {
-                        publication_time: String::from(publication_time.clone()),
+                        measurement_time_default: String::from(measurement_time_default.clone()),
                         id: u16::from(id.clone()),
                         index: u16::from(index.clone()),
                         field_description: String::from(field_description.clone()),
@@ -390,7 +391,7 @@ mod tests {
                         .coefficientOfFriction
                         .coefficientOfFriction;
                     let wm = structs::WeatherMeasurement {
-                        publication_time: String::from(publication_time.clone()),
+                        measurement_time_default: String::from(measurement_time_default.clone()),
                         id: u16::from(id.clone()),
                         index: u16::from(index.clone()),
                         field_description: String::from(field_description.clone()),

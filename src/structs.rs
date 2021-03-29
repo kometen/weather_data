@@ -82,7 +82,7 @@ pub(crate) struct InformationStatus {
 #[derive(Deserialize, Debug)]
 pub(crate) struct SiteMeasurements {
     pub(crate) measurementSiteReference: MeasurementSiteReference,
-    measurementTimeDefault: MeasurementTimeDefault,
+    pub(crate) measurementTimeDefault: MeasurementTimeDefault,
     #[serde(default)]
     pub(crate) measuredValue: Vec<MeasuredValue_>,
 }
@@ -97,7 +97,7 @@ pub(crate) struct MeasurementSiteReference {
 #[derive(Deserialize, Debug)]
 pub(crate) struct MeasurementTimeDefault {
     #[serde(rename = "$value")]
-    measurementTimeDefault: String,
+    pub(crate) measurementTimeDefault: String,
 }
 
 // Common for all measurements.
@@ -347,7 +347,7 @@ fn road_surface_condition_measurements_extension() -> String {
 
 #[derive(Serialize)]
 pub(crate) struct WeatherMeasurement {
-    pub(crate) publication_time: String,
+    pub(crate) measurement_time_default: String,
     pub(crate) id: u16,
     pub(crate) index: u16,
     pub(crate) field_description: String,
