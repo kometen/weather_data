@@ -141,6 +141,8 @@ mod tests {
     </payloadPublication>
 </d2LogicalModel>"#;
 
+        let json = r#"[{"measurement_time_default":"2021-03-24T20:50:00+01:00","id":228,"index":201,"field_description":"relative_humidity","measurement":77.5},{"measurement_time_default":"2021-03-24T20:50:00+01:00","id":228,"index":2501,"field_description":"precipitation_intensity","measurement":0.0},{"measurement_time_default":"2021-03-24T20:50:00+01:00","id":228,"index":801,"field_description":"road_surface_temperature","measurement":-3.0},{"measurement_time_default":"2021-03-24T20:50:00+01:00","id":228,"index":901,"field_description":"wind_speed","measurement":21.24},{"measurement_time_default":"2021-03-24T20:50:00+01:00","id":228,"index":1001,"field_description":"wind_direction_bearing","measurement":176.0},{"measurement_time_default":"2021-03-24T20:50:00+01:00","id":228,"index":101,"field_description":"air_temperature","measurement":0.2},{"measurement_time_default":"2021-03-24T20:50:00+01:00","id":228,"index":301,"field_description":"dew_point_temperature","measurement":-3.3},{"measurement_time_default":"2021-03-24T20:50:00+01:00","id":228,"index":1401,"field_description":"minimum_visibility_distance","measurement":9999.0},{"measurement_time_default":"2021-03-24T20:50:00+01:00","id":228,"index":5401,"field_description":"road_surface_condition_measurements_extension","measurement":0.82}]"#.to_string();
+
         let mut measurements: Vec<structs::WeatherMeasurement> = Vec::new();
 
         let d2LogicalModel: structs::D2LogicalModel = serde_xml_rs::from_str(&body).unwrap();
@@ -404,6 +406,14 @@ mod tests {
                     measurements.push(wm);
                     /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
                              publication_time, id, index, field_description, measurement);*/
+
+                    let optional = Some(serde_json::to_string(&measurements));
+                    match optional {
+                        Some(jm) => {
+                            assert_eq!(jm.unwrap(), json);
+                        },
+                        _ => {println!("test")},
+                    }
                 };
             }
         }
