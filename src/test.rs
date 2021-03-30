@@ -144,7 +144,6 @@ mod tests {
         let mut measurements: Vec<structs::WeatherMeasurement> = Vec::new();
 
         let d2LogicalModel: structs::D2LogicalModel = serde_xml_rs::from_str(&body).unwrap();
-        let publication_time = &d2LogicalModel.payloadPublication.publicationTime.publicationTime;
         for site in &d2LogicalModel.payloadPublication.siteMeasurements {
             let id = &site.measurementSiteReference.id;
             let measurement_time_default = &site.measurementTimeDefault.measurementTimeDefault;
@@ -171,7 +170,7 @@ mod tests {
                         field_description: String::from(field_description.clone()),
                         measurement: f32::from(measurement.clone()),
                     };
-                    assert_eq!(publication_time, "2021-03-24T21:02:28.762+01:00");
+                    assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
                     assert_eq!(index.clone(), 201);
                     assert_eq!(field_description, "relative_humidity");
@@ -199,7 +198,7 @@ mod tests {
                         field_description: String::from(field_description.clone()),
                         measurement: f32::from(measurement.clone()),
                     };
-                    assert_eq!(publication_time, "2021-03-24T21:02:28.762+01:00");
+                    assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
                     assert_eq!(index.clone(), 2501);
                     assert_eq!(field_description, "precipitation_intensity");
@@ -227,7 +226,7 @@ mod tests {
                         field_description: String::from(field_description.clone()),
                         measurement: f32::from(measurement.clone()),
                     };
-                    assert_eq!(publication_time, "2021-03-24T21:02:28.762+01:00");
+                    assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
                     assert_eq!(index.clone(), 801);
                     assert_eq!(field_description, "road_surface_temperature");
@@ -255,7 +254,7 @@ mod tests {
                         field_description: String::from(field_description.clone()),
                         measurement: f32::from(measurement.clone()),
                     };
-                    assert_eq!(publication_time, "2021-03-24T21:02:28.762+01:00");
+                    assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
                     assert_eq!(index.clone(), 901);
                     assert_eq!(field_description, "wind_speed");
@@ -283,7 +282,7 @@ mod tests {
                         field_description: String::from(field_description.clone()),
                         measurement: f32::from(measurement.clone()),
                     };
-                    assert_eq!(publication_time, "2021-03-24T21:02:28.762+01:00");
+                    assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
                     assert_eq!(index.clone(), 1001);
                     assert_eq!(field_description, "wind_direction_bearing");
@@ -311,7 +310,7 @@ mod tests {
                         field_description: String::from(field_description.clone()),
                         measurement: f32::from(measurement.clone()),
                     };
-                    assert_eq!(publication_time, "2021-03-24T21:02:28.762+01:00");
+                    assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
                     assert_eq!(index.clone(), 101);
                     assert_eq!(field_description, "air_temperature");
@@ -339,7 +338,7 @@ mod tests {
                         field_description: String::from(field_description.clone()),
                         measurement: f32::from(measurement.clone()),
                     };
-                    assert_eq!(publication_time, "2021-03-24T21:02:28.762+01:00");
+                    assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
                     assert_eq!(index.clone(), 301);
                     assert_eq!(field_description, "dew_point_temperature");
@@ -367,7 +366,7 @@ mod tests {
                         field_description: String::from(field_description.clone()),
                         measurement: f32::from(measurement.clone()),
                     };
-                    assert_eq!(publication_time, "2021-03-24T21:02:28.762+01:00");
+                    assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
                     assert_eq!(index.clone(), 1401);
                     assert_eq!(field_description, "minimum_visibility_distance");
@@ -397,7 +396,7 @@ mod tests {
                         field_description: String::from(field_description.clone()),
                         measurement: f32::from(measurement.clone()),
                     };
-                    assert_eq!(publication_time, "2021-03-24T21:02:28.762+01:00");
+                    assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
                     assert_eq!(index.clone(), 5401);
                     assert_eq!(field_description, "road_surface_condition_measurements_extension");
