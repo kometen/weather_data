@@ -65,7 +65,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     id: *id,
                     index: *index,
                     field_description: field_description.clone(),
-                   measurement: *measurement,
+                    measurement: *measurement,
                 };
                 measurements.push(wm);
                 /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
