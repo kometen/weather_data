@@ -155,22 +155,15 @@ mod tests {
                 let weather_node = &measured_value.measuredValue.basicData;
 
                 // relativeHumidity
-                let field_description = &weather_node
-                    .humidity
-                    .relativeHumidity
-                    .field_description;
+                let field_description = &weather_node.humidity.relativeHumidity.field_description;
                 if field_description != "" {
-                    let measurement = &weather_node
-                        .humidity
-                        .relativeHumidity
-                        .percentage
-                        .percentage;
+                    let measurement = &weather_node.humidity.relativeHumidity.percentage.percentage;
                     let wm = structs::WeatherMeasurement {
-                        measurement_time_default: String::from(measurement_time_default.clone()),
-                        id: u16::from(id.clone()),
-                        index: u16::from(index.clone()),
-                        field_description: String::from(field_description.clone()),
-                        measurement: f32::from(measurement.clone()),
+                        measurement_time_default: measurement_time_default.clone(),
+                        id: *id,
+                        index: *index,
+                        field_description: field_description.clone(),
+                        measurement: *measurement,
                     };
                     assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
@@ -179,7 +172,7 @@ mod tests {
                     assert_eq!(measurement.clone(), f32::from(77.5));
                     measurements.push(wm);
                     /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                             publication_time, id, index, field_description, measurement);*/
+                    publication_time, id, index, field_description, measurement);*/
                 }
 
                 // precipitationIntensity
@@ -194,11 +187,11 @@ mod tests {
                         .millimetresPerHourIntensity
                         .millimetresPerHourIntensity;
                     let wm = structs::WeatherMeasurement {
-                        measurement_time_default: String::from(measurement_time_default.clone()),
-                        id: u16::from(id.clone()),
-                        index: u16::from(index.clone()),
-                        field_description: String::from(field_description.clone()),
-                        measurement: f32::from(measurement.clone()),
+                        measurement_time_default: measurement_time_default.clone(),
+                        id: *id,
+                        index: *index,
+                        field_description: field_description.clone(),
+                        measurement: *measurement,
                     };
                     assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
@@ -207,7 +200,7 @@ mod tests {
                     assert_eq!(measurement.clone(), f32::from(0.0));
                     measurements.push(wm);
                     /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                             publication_time, id, index, field_description, measurement);*/
+                    publication_time, id, index, field_description, measurement);*/
                 };
 
                 // roadSurfaceTemperature
@@ -222,11 +215,11 @@ mod tests {
                         .temperature
                         .temperature;
                     let wm = structs::WeatherMeasurement {
-                        measurement_time_default: String::from(measurement_time_default.clone()),
-                        id: u16::from(id.clone()),
-                        index: u16::from(index.clone()),
-                        field_description: String::from(field_description.clone()),
-                        measurement: f32::from(measurement.clone()),
+                        measurement_time_default: measurement_time_default.clone(),
+                        id: *id,
+                        index: *index,
+                        field_description: field_description.clone(),
+                        measurement: *measurement,
                     };
                     assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
@@ -235,26 +228,19 @@ mod tests {
                     assert_eq!(measurement.clone(), f32::from(-3.0));
                     measurements.push(wm);
                     /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                             publication_time, id, index, field_description, measurement);*/
+                    publication_time, id, index, field_description, measurement);*/
                 };
 
                 // windSpeed
-                let field_description = &weather_node
-                    .wind
-                    .windSpeed
-                    .field_description;
+                let field_description = &weather_node.wind.windSpeed.field_description;
                 if field_description != "" {
-                    let measurement = &weather_node
-                        .wind
-                        .windSpeed
-                        .speed
-                        .speed;
+                    let measurement = &weather_node.wind.windSpeed.speed.speed;
                     let wm = structs::WeatherMeasurement {
-                        measurement_time_default: String::from(measurement_time_default.clone()),
-                        id: u16::from(id.clone()),
-                        index: u16::from(index.clone()),
-                        field_description: String::from(field_description.clone()),
-                        measurement: f32::from(measurement.clone()),
+                        measurement_time_default: measurement_time_default.clone(),
+                        id: *id,
+                        index: *index,
+                        field_description: field_description.clone(),
+                        measurement: *measurement,
                     };
                     assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
@@ -263,14 +249,11 @@ mod tests {
                     assert_eq!(measurement.clone(), f32::from(21.24));
                     measurements.push(wm);
                     /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                             publication_time, id, index, field_description, measurement);*/
+                    publication_time, id, index, field_description, measurement);*/
                 };
 
                 // directionBearing
-                let field_description = &weather_node
-                    .wind
-                    .windDirectionBearing
-                    .field_description;
+                let field_description = &weather_node.wind.windDirectionBearing.field_description;
                 if field_description != "" {
                     let measurement = &weather_node
                         .wind
@@ -278,11 +261,11 @@ mod tests {
                         .directionBearing
                         .directionBearing;
                     let wm = structs::WeatherMeasurement {
-                        measurement_time_default: String::from(measurement_time_default.clone()),
-                        id: u16::from(id.clone()),
-                        index: u16::from(index.clone()),
-                        field_description: String::from(field_description.clone()),
-                        measurement: f32::from(measurement.clone()),
+                        measurement_time_default: measurement_time_default.clone(),
+                        id: *id,
+                        index: *index,
+                        field_description: field_description.clone(),
+                        measurement: *measurement,
                     };
                     assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
@@ -291,14 +274,11 @@ mod tests {
                     assert_eq!(measurement.clone(), f32::from(176.0));
                     measurements.push(wm);
                     /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                             publication_time, id, index, field_description, measurement);*/
+                    publication_time, id, index, field_description, measurement);*/
                 };
 
                 // airTemperature
-                let field_description = &weather_node
-                    .temperature
-                    .airTemperature
-                    .field_description;
+                let field_description = &weather_node.temperature.airTemperature.field_description;
                 if field_description != "" {
                     let measurement = &weather_node
                         .temperature
@@ -306,11 +286,11 @@ mod tests {
                         .temperature
                         .temperature;
                     let wm = structs::WeatherMeasurement {
-                        measurement_time_default: String::from(measurement_time_default.clone()),
-                        id: u16::from(id.clone()),
-                        index: u16::from(index.clone()),
-                        field_description: String::from(field_description.clone()),
-                        measurement: f32::from(measurement.clone()),
+                        measurement_time_default: measurement_time_default.clone(),
+                        id: *id,
+                        index: *index,
+                        field_description: field_description.clone(),
+                        measurement: *measurement,
                     };
                     assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
@@ -319,7 +299,7 @@ mod tests {
                     assert_eq!(measurement.clone(), f32::from(0.2));
                     measurements.push(wm);
                     /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                             publication_time, id, index, field_description, measurement);*/
+                    publication_time, id, index, field_description, measurement);*/
                 };
 
                 // dewPointTemperature
@@ -334,11 +314,11 @@ mod tests {
                         .temperature
                         .temperature;
                     let wm = structs::WeatherMeasurement {
-                        measurement_time_default: String::from(measurement_time_default.clone()),
-                        id: u16::from(id.clone()),
-                        index: u16::from(index.clone()),
-                        field_description: String::from(field_description.clone()),
-                        measurement: f32::from(measurement.clone()),
+                        measurement_time_default: measurement_time_default.clone(),
+                        id: *id,
+                        index: *index,
+                        field_description: field_description.clone(),
+                        measurement: *measurement,
                     };
                     assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
@@ -347,7 +327,7 @@ mod tests {
                     assert_eq!(measurement.clone(), f32::from(-3.3));
                     measurements.push(wm);
                     /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                             publication_time, id, index, field_description, measurement);*/
+                    publication_time, id, index, field_description, measurement);*/
                 };
 
                 // visibility
@@ -362,11 +342,11 @@ mod tests {
                         .integerMetreDistance
                         .integerMetreDistance;
                     let wm = structs::WeatherMeasurement {
-                        measurement_time_default: String::from(measurement_time_default.clone()),
-                        id: u16::from(id.clone()),
-                        index: u16::from(index.clone()),
-                        field_description: String::from(field_description.clone()),
-                        measurement: f32::from(measurement.clone()),
+                        measurement_time_default: measurement_time_default.clone(),
+                        id: *id,
+                        index: *index,
+                        field_description: field_description.clone(),
+                        measurement: *measurement,
                     };
                     assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
@@ -375,7 +355,7 @@ mod tests {
                     assert_eq!(measurement.clone(), f32::from(9999.0));
                     measurements.push(wm);
                     /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                             publication_time, id, index, field_description, measurement);*/
+                    publication_time, id, index, field_description, measurement);*/
                 };
 
                 // roadSurfaceConditionMeasurements
@@ -392,27 +372,32 @@ mod tests {
                         .coefficientOfFriction
                         .coefficientOfFriction;
                     let wm = structs::WeatherMeasurement {
-                        measurement_time_default: String::from(measurement_time_default.clone()),
-                        id: u16::from(id.clone()),
-                        index: u16::from(index.clone()),
-                        field_description: String::from(field_description.clone()),
-                        measurement: f32::from(measurement.clone()),
+                        measurement_time_default: measurement_time_default.clone(),
+                        id: *id,
+                        index: *index,
+                        field_description: field_description.clone(),
+                        measurement: *measurement,
                     };
                     assert_eq!(measurement_time_default, "2021-03-24T20:50:00+01:00");
                     assert_eq!(id.clone(), 228);
                     assert_eq!(index.clone(), 5401);
-                    assert_eq!(field_description, "road_surface_condition_measurements_extension");
+                    assert_eq!(
+                        field_description,
+                        "road_surface_condition_measurements_extension"
+                    );
                     assert_eq!(measurement.clone(), f32::from(0.82));
                     measurements.push(wm);
                     /*println!("publication time: {}, id: {}, index: {}, field description: {}, measurement: {}",
-                             publication_time, id, index, field_description, measurement);*/
+                    publication_time, id, index, field_description, measurement);*/
 
                     let optional = Some(serde_json::to_string(&measurements));
                     match optional {
                         Some(jm) => {
                             assert_eq!(jm.unwrap(), json);
-                        },
-                        _ => {println!("test")},
+                        }
+                        _ => {
+                            println!("test")
+                        }
                     }
                 };
             }

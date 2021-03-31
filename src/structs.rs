@@ -63,7 +63,7 @@ pub(crate) struct MeasurementSiteTableReference {
 #[derive(Deserialize, Debug)]
 pub(crate) struct HeaderInformation {
     confidentiality: Confidentiality,
-    informationStatus: InformationStatus
+    informationStatus: InformationStatus,
 }
 
 #[derive(Deserialize, Debug)]
@@ -124,7 +124,7 @@ pub(crate) struct BasicData {
     #[serde(default)]
     pub(crate) wind: Wind,
     #[serde(default)]
-    pub(crate) temperature: Temperature_,  // Add underscore since this collides with another struct
+    pub(crate) temperature: Temperature_, // Add underscore since this collides with another struct
     #[serde(default)]
     pub(crate) visibility: Visibility,
 }
