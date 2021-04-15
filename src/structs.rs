@@ -349,6 +349,11 @@ fn road_surface_condition_measurements_extension() -> String {
 pub(crate) struct WeatherMeasurement {
     pub(crate) measurement_time_default: String,
     pub(crate) id: u16,
+    pub(crate) data: Vec<Data>,
+}
+
+#[derive(Serialize)]
+pub(crate) struct Data {
     pub(crate) index: u16,
     pub(crate) field_description: String,
     pub(crate) measurement: f32,

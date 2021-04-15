@@ -43,31 +43,30 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .send()?;
 
     let body = res.text().unwrap();
-
+    let d2LogicalModel: structs::D2LogicalModel = serde_xml_rs::from_str(&body).unwrap();
     let mut measurements: Vec<structs::WeatherMeasurement> = Vec::new();
 
-    let d2LogicalModel: structs::D2LogicalModel = serde_xml_rs::from_str(&body).unwrap();
-    //    let publication_time = &d2LogicalModel.payloadPublication.publicationTime.publicationTime;
     for site in &d2LogicalModel.payloadPublication.siteMeasurements {
-        let id = &site.measurementSiteReference.id;
+        // The actual weather data
+        let mut readings: Vec<structs::Data> = Vec::new();
+
         let measurement_time_default = &site.measurementTimeDefault.measurementTimeDefault;
+        let id = &site.measurementSiteReference.id;
+
         for measured_value in &site.measuredValue {
             let index = &measured_value.index;
-
             let weather_node = &measured_value.measuredValue.basicData;
 
             // relativeHumidity
             let field_description = &weather_node.humidity.relativeHumidity.field_description;
             if !field_description.is_empty() {
                 let measurement = &weather_node.humidity.relativeHumidity.percentage.percentage;
-                let wm = structs::WeatherMeasurement {
-                    measurement_time_default: measurement_time_default.clone(),
-                    id: *id,
+                let r = structs::Data {
                     index: *index,
                     field_description: field_description.clone(),
                     measurement: *measurement,
                 };
-                measurements.push(wm);
+                readings.push(r);
                 /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
                 measurement_time_default, id, index, field_description, measurement);*/
             }
@@ -83,14 +82,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .precipitationIntensity
                     .millimetresPerHourIntensity
                     .millimetresPerHourIntensity;
-                let wm = structs::WeatherMeasurement {
-                    measurement_time_default: measurement_time_default.clone(),
-                    id: *id,
+                let r = structs::Data {
                     index: *index,
                     field_description: field_description.clone(),
                     measurement: *measurement,
                 };
-                measurements.push(wm);
+                readings.push(r);
                 /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
                 measurement_time_default, id, index, field_description, measurement);*/
             };
@@ -106,14 +103,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .roadSurfaceTemperature
                     .temperature
                     .temperature;
-                let wm = structs::WeatherMeasurement {
-                    measurement_time_default: measurement_time_default.clone(),
-                    id: *id,
+                let r = structs::Data {
                     index: *index,
                     field_description: field_description.clone(),
                     measurement: *measurement,
                 };
-                measurements.push(wm);
+                readings.push(r);
                 /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
                 measurement_time_default, id, index, field_description, measurement);*/
             };
@@ -122,14 +117,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             let field_description = &weather_node.wind.windSpeed.field_description;
             if !field_description.is_empty() {
                 let measurement = &weather_node.wind.windSpeed.speed.speed;
-                let wm = structs::WeatherMeasurement {
-                    measurement_time_default: measurement_time_default.clone(),
-                    id: *id,
+                let r = structs::Data {
                     index: *index,
                     field_description: field_description.clone(),
                     measurement: *measurement,
                 };
-                measurements.push(wm);
+                readings.push(r);
                 /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
                 measurement_time_default, id, index, field_description, measurement);*/
             };
@@ -142,14 +135,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .windDirectionBearing
                     .directionBearing
                     .directionBearing;
-                let wm = structs::WeatherMeasurement {
-                    measurement_time_default: measurement_time_default.clone(),
-                    id: *id,
+                let r = structs::Data {
                     index: *index,
                     field_description: field_description.clone(),
                     measurement: *measurement,
                 };
-                measurements.push(wm);
+                readings.push(r);
                 /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
                 measurement_time_default, id, index, field_description, measurement);*/
             };
@@ -162,14 +153,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .airTemperature
                     .temperature
                     .temperature;
-                let wm = structs::WeatherMeasurement {
-                    measurement_time_default: measurement_time_default.clone(),
-                    id: *id,
+                let r = structs::Data {
                     index: *index,
                     field_description: field_description.clone(),
                     measurement: *measurement,
                 };
-                measurements.push(wm);
+                readings.push(r);
                 /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
                 measurement_time_default, id, index, field_description, measurement);*/
             };
@@ -185,14 +174,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .dewPointTemperature
                     .temperature
                     .temperature;
-                let wm = structs::WeatherMeasurement {
-                    measurement_time_default: measurement_time_default.clone(),
-                    id: *id,
+                let r = structs::Data {
                     index: *index,
                     field_description: field_description.clone(),
                     measurement: *measurement,
                 };
-                measurements.push(wm);
+                readings.push(r);
                 /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
                 measurement_time_default, id, index, field_description, measurement);*/
             };
@@ -208,14 +195,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .minimumVisibilityDistance
                     .integerMetreDistance
                     .integerMetreDistance;
-                let wm = structs::WeatherMeasurement {
-                    measurement_time_default: measurement_time_default.clone(),
-                    id: *id,
+                let r = structs::Data {
                     index: *index,
                     field_description: field_description.clone(),
                     measurement: *measurement,
                 };
-                measurements.push(wm);
+                readings.push(r);
                 /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
                 measurement_time_default, id, index, field_description, measurement);*/
             };
@@ -233,22 +218,27 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     .friction
                     .coefficientOfFriction
                     .coefficientOfFriction;
-                let wm = structs::WeatherMeasurement {
-                    measurement_time_default: measurement_time_default.clone(),
-                    id: *id,
+                let r = structs::Data {
                     index: *index,
                     field_description: field_description.clone(),
                     measurement: *measurement,
                 };
-                measurements.push(wm);
+                readings.push(r);
                 /*println!("measurement time-default: {}, id: {}, index: {}, field description: {}, measurement: {}",
                 measurement_time_default, id, index, field_description, measurement);*/
             };
         }
+        let wm = structs::WeatherMeasurement {
+            measurement_time_default: measurement_time_default.clone(),
+            id: *id,
+            data: readings,
+        };
+        measurements.push(wm);
+        // Add final struct here
     }
 
     let jm = serde_json::to_string(&measurements)?;
-    //    println!("{:?}", &jm);
+    //println!("{:?}", &jm);
 
     let res = client
         .post("http://localhost:8080/weather_data")
