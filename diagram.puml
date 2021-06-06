@@ -1,0 +1,15 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+System(vegvesen, "Statens Vegvesen")
+
+System_Boundary(c1, "Retrieve XML") {
+    Container(retriever, "Parser", "Rust, Diesel, Serde", "Parse XML and convert to JSON")
+}
+
+System(microservice, "actix-web", "rust")
+
+Rel(vegvesen, retriever, "Uses", "https")
+Rel(retriever, microservice, "Uses", "http on port 8080")
+
+@enduml
