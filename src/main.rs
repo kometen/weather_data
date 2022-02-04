@@ -40,9 +40,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .header(AUTHORIZATION, BASIC_AUTH)
         .send()?;
     let body = res.text().unwrap();
-//    println!("{}", body);
+    //    println!("{}", body);
 
-/*    let filename = "../vejr3.xml";
+    /*    let filename = "../vejr3.xml";
     let res = fs::read_to_string(filename).expect("Unable to read file");
     let body = res;*/
 
