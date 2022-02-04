@@ -7,9 +7,9 @@ System_Boundary(c1, "Retrieve XML") {
     Container(retriever, "Parser", "Rust, Diesel, Serde", "Parse XML and convert to JSON")
 }
 
-System(microservice, "actix-web", "rust")
+System(microservice, "weather_web", "actix-web")
 
 Rel(vegvesen, retriever, "Uses", "https")
-Rel(retriever, microservice, "Uses", "http on port 8080")
+Rel(retriever, microservice, "Uses", "http port 8080")
 
 @enduml

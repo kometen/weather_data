@@ -89,7 +89,7 @@ pub(crate) struct SiteMeasurements {
 
 #[derive(Deserialize, Debug)]
 pub(crate) struct MeasurementSiteReference {
-    pub(crate) id: u16,
+    pub(crate) id: u32,
     targetClass: String,
     version: u16,
 }
@@ -348,7 +348,7 @@ fn road_surface_condition_measurements_extension() -> String {
 #[derive(Serialize)]
 pub(crate) struct WeatherMeasurement {
     pub(crate) measurement_time_default: String,
-    pub(crate) id: u16,
+    pub(crate) id: u32,
     pub(crate) data: Vec<Data>,
 }
 

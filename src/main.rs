@@ -18,12 +18,10 @@ extern crate serde_xml_rs;
 use dotenv::dotenv;
 use reqwest::header::AUTHORIZATION;
 use std::env;
+//use std::fs;
 use std::process::exit;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    /*    let filename = "../vejr.xml";
-    let content= fs::read_to_string(filename).expect("Unable to read file");*/
-
     dotenv().ok();
 
     let BASIC_AUTH = env::var("VEGVESEN_BASIC_AUTH").expect("Please add basic authentication");
@@ -41,8 +39,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .get("https://www.vegvesen.no/ws/no/vegvesen/veg/trafikkpublikasjon/vaer/2/GetMeasuredWeatherData")
         .header(AUTHORIZATION, BASIC_AUTH)
         .send()?;
-
     let body = res.text().unwrap();
+//    println!("{}", body);
+
+/*    let filename = "../vejr3.xml";
+    let res = fs::read_to_string(filename).expect("Unable to read file");
+    let body = res;*/
+
     let d2LogicalModel: structs::D2LogicalModel = serde_xml_rs::from_str(&body).unwrap();
     let mut measurements: Vec<structs::WeatherMeasurement> = Vec::new();
 
